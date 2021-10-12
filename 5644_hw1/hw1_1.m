@@ -14,7 +14,7 @@ w = [0.5 0.5];
 p = [0.65 0.35]; % class priors for labels 0 and 1 respectively
 label = rand(1,N) >= p(1);
 Nc = [length(find(label==0)),length(find(label==1))]; % number of samples from each class
-% Draw samples from each class pdf
+% Data distribution for all samples
 x = zeros(n,N);
 for i = 1 : N
     if label(i) == 0
@@ -30,7 +30,7 @@ for i = 1 : N
         x(:,i) = mvnrnd(mu_1,Sigma_1,1)';
     end
 end
-% Plot with class labels
+% Plot the first figure with their class
 figure(1),
 plot(x(1,label==0),x(2,label==0),'o'), hold on;
 plot(x(1,label==1),x(2,label==1),'+'), axis equal;
